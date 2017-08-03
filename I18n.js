@@ -7,7 +7,7 @@ export default class I18n
     {
         let translation = this.extract(key, window.translations);
 
-        return this.replace(translation, key, replace);
+        return this.replace(translation, replace);
     }
 
     /**
@@ -19,13 +19,13 @@ export default class I18n
 
         translation = count > 1 ? translation[1] : translation[0];
 
-        return this.replace(translation, key, replace);
+        return this.replace(translation, replace);
     }
 
     /**
      * Replace the placeholders.
      */
-    static replace(translation, key, replace)
+    static replace(translation, replace)
     {
         for (var key in replace) {
             translation = translation.replace(`:${key}`, replace[key]);
