@@ -27,8 +27,8 @@ export default class I18n
      */
     static replace(translation, replace)
     {
-        for (var key in replace) {
-            translation = translation.replace(`:${key}`, replace[key]);
+        for (var placeholder in replace) {
+            translation = translation.replace(`:${placeholder}`, replace[placeholder]);
         }
 
         return translation;
