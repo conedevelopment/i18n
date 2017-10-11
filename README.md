@@ -63,7 +63,7 @@ let translations = {
     }
 };
 
-let translatior = new I18n(translations);
+let translator = new I18n(translations);
 ```
 > Note, the plural and the singular verions are separated with the ``|`` character!
 
