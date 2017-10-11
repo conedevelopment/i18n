@@ -1,11 +1,11 @@
 # I18n
 
-This little library is a lighweight implementation of Laravel's translation system.
+This library is a lighweight implementation of Laravel's translation system.
 
 The *"Translation Strings as Keys"* way is not supported yet!
 
 To read the guide how to extract your Laravel translations to the JS side,
-what we can use easily with this package, we suggest to read this post:
+and use them easily with this package, we suggest to read this post:
 [Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
 
 ## Getting started
