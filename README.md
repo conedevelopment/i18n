@@ -2,6 +2,11 @@
 
 Push your Laravel translations to the front-end and use them easily with JavaScript.
 
+The "Translation Strings as Keys" way is not supported!
+
+If you have any question how the package works, we suggest to read this post: 
+[Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
+
 ## Getting Started
 
 You can install the package with composer, running the ``composer require thepinecode/i18n`` command.
