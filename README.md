@@ -7,14 +7,14 @@ The "Translation Strings as Keys" way is not supported!
 If you have any question how the package works, we suggest to read this post: 
 [Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
 
-## Getting Started
+## Getting started
 
 You can install the package with composer, running the ``composer require thepinecode/i18n`` command.
 
 ### Laravel 5.5
 
 If you are using version 5.5, there is nothing else to do.
-Since the package supports autodiscovery, Laravel will register the service provider automatically, behind the scenes.
+Since the package supports autodiscovery, Laravel will register the service provider automatically behind the scenes.
 
 ### Laravel 5.4 and below
 
@@ -37,9 +37,8 @@ To do that, first you have to publish the config file with the following command
 ## Translations in view files
 
 You can access to the ``$translations`` variable, anywhere in your view files. 
-It's a collection instance, so you have the flexibility what the collection service provides.
+It's a collection instance, so you have the flexibility what the collection service provides:
 
-Usage:
 ```html
 <script>
     window.translations = {{ $translations->toJson() }};
@@ -49,9 +48,8 @@ Usage:
 ```
 
 Also, you can use the ``@translations`` blade directive.
-It's automatically converted to JSON, so it's a neat way to print your translations out.
+It's automatically converted to JSON, so it's a neat way to print your translations out:
 
-Usage:
 ```html
 <script>
     window.translations = @translations;
@@ -64,7 +62,7 @@ You can set a single value or an array of values.
 ## Publishing and using the JavaScipt library
 
 You can publish the JS file like the config file, but you need to use a different tag.
-Using the ``php artisan vendor:publish`` command and choose the ``i18n-js`` tag.
+Use the ``php artisan vendor:publish`` command and choose the ``i18n-js`` tag.
 After publishing you can find your fresh copy in the ``resources/assets/js/vendor/i18n`` folder.
 
 ### Using the I18n.js
@@ -78,7 +76,10 @@ window.I18n = I18n;
 
 ### Initializing a translation instance
 
-From this point you can initialize the translation service anywhere from your applivation.
+From this point you can initialize the translation service anywhere from your application.
+
+You can pass any kind of object you want to the constructor. 
+It's useful if you need multiple translator instances on the JS side.
 
 ```js
 let translator = new I18n(window.translations);
