@@ -2,6 +2,9 @@ export default class I18n
 {
     /**
      * Initialize a new translation instance.
+     * 
+     * @param  {object}  translations
+     * @return {void}
      */
     constructor(translations = {})
     {
@@ -10,6 +13,10 @@ export default class I18n
 
     /**
      * Get and replace the string of the given key.
+     * 
+     * @param  {string}  key
+     * @param  {object}  replace
+     * @return {string}
      */
     trans(key, replace = {})
     {
@@ -18,6 +25,11 @@ export default class I18n
 
     /**
      * Get and pluralize the strings of the given key.
+     * 
+     * @param  {string}  key
+     * @param  {number}  count
+     * @param  {object}  replace
+     * @return {string}
      */
     trans_choice(key, count = 1, replace = {})
     {
@@ -30,6 +42,10 @@ export default class I18n
 
     /**
      * Replace the placeholders.
+     * 
+     * @param  {string}  translation
+     * @param  {object}  replace
+     * @return {string}
      */
     _replace(translation, replace)
     {
@@ -42,6 +58,10 @@ export default class I18n
 
     /**
      * The extract helper.
+     * 
+     * @param  {string}  key
+     * @param  {mixed}  value
+     * @return {mixed}
      */
     _extract(key, value = null)
     {
