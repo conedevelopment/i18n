@@ -69,7 +69,7 @@ You may override the default key for the translations. You can do that by passin
 You can set the specific views where you want to share the translations in the configuration file.
 You can set a single value or an array of values.
 
-## Publishing and using the JavaScipt library
+## Publishing and using the JavaScript library
 
 You can publish the JS file like the config file, but you need to use a different tag.
 Use the ``php artisan vendor:publish`` command and choose the ``i18n-js`` tag.
@@ -143,7 +143,7 @@ translator.trans('auth.throttle', { seconds: 60 });
 
 #### ``trans_choice()``
 
-The ``trans_choice()`` method determines if the translation should be pluralized or nor by the given cout.
+The ``trans_choice`` method determines if the translation should be pluralized or nor by the given cout.
 Also, it accepts the attributes we want to replace.
 
 Let's say we have the following translation line:
