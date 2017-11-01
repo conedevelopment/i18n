@@ -48,12 +48,22 @@ It's a collection instance, so you have the flexibility what the collection serv
 ```
 
 Also, you can use the ``@translations`` blade directive.
-It's automatically converted to JSON, so it's a neat way to print your translations out:
+This directive saves time for you and automatically wrap the translations to a ``<script>`` tag.
 
 ```html
-<script>
-    window.translations = @translations;
-</script>
+@translations
+
+<!-- The result -->
+<script>window.translations = {{ $translations->toJson() }}</script>
+```
+
+You may override the default key for the translations. You can do that by passing a string to the blade directive.
+
+```html
+@translations('myTranslations')
+
+<!-- The result -->
+<script>window.myTranslations = {{ $translations->toJson() }}</script>
 ```
 
 You can set the specific views where you want to share the translations in the configuration file.
@@ -78,11 +88,15 @@ window.I18n = I18n;
 
 From this point you can initialize the translation service anywhere from your application.
 
-You can pass any kind of object you want to the constructor. 
-It's useful if you need multiple translator instances on the JS side.
+```js
+let translator = new I18n;
+```
+
+By default, it uses the ``translations`` key in the ``window`` object. 
+If you want to use the custom one you set in the blade directive, pass the same key to the constructor.
 
 ```js
-let translator = new I18n(window.translations);
+let traslator = new I18n('myTranslations');
 ```
 
 ### Using it as a Vue service
@@ -90,7 +104,7 @@ let translator = new I18n(window.translations);
 If you want to use it from Vue templates directly you can extend Vue with this easily.
 
 ```js
-Vue.prototype.$I18n = new I18n(window.translations);
+Vue.prototype.$I18n = new I18n;
 ```
 
 You can call it from your template or the script part of your component like below:

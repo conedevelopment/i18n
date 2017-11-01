@@ -33,8 +33,10 @@ class I18nServiceProvider extends ServiceProvider
         });
 
         // Register the custom blade directive
-        Blade::directive('translations', function () {
-            return '<?php echo $translations->toJson(); ?>';
+        Blade::directive('translations', function ($name) {
+            $name = str_replace("'", '', $name ?: 'translations');
+            
+            return "<script>window.{$name}" . ' = <?php echo $translations->toJson(); ?></script>';
         });
     }
 

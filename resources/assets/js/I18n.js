@@ -3,12 +3,12 @@ export default class I18n
     /**
      * Initialize a new translation instance.
      * 
-     * @param  {object}  translations
+     * @param  {string}  key
      * @return {void}
      */
-    constructor(translations = {})
+    constructor(key = 'translations')
     {
-        this.translations = translations;
+        this.key = key;
     }
 
     /**
@@ -65,6 +65,6 @@ export default class I18n
      */
     _extract(key, value = null)
     {
-        return key.toString().split('.').reduce((t, i) => t[i] || (value || key), this.translations);
+        return key.toString().split('.').reduce((t, i) => t[i] || (value || key), window[this.key]);
     }
 }
