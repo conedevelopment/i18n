@@ -4,51 +4,33 @@ Push your Laravel translations to the front-end and use them easily with JavaScr
 
 The "Translation Strings as Keys" way is not supported!
 
-If you have any question how the package works, we suggest to read this post: 
+If you have any question how the package works, we suggest to read this post:
 [Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
 
 ## Getting started
 
-You can install the package with composer, running the ``composer require thepinecode/i18n`` command.
+`composer require thepinecode/i18n`
 
-### Laravel 5.5
+### (Laravel < 5.5)
 
-If you are using version 5.5, there is nothing else to do.
-Since the package supports autodiscovery, Laravel will register the service provider automatically behind the scenes.
+add the service provider to `config/app.php`
 
-### Laravel 5.4 and below
+```php
+'providers' => [
+    Pine\I18n\I18nServiceProvider::class,
+]
+```
 
-You have to register the service provider manually.
-Go to the ``config/app.php`` file and add the ``Pine\I18n\I18nServiceProvider::class`` to the providers array.
-
-### Disable the autodiscovery for the package
+### Disable the autodiscovery for the package (Laravel 5.5)
 
 In some cases you may disable autodiscovery for this package.
-You can add the provider class to the ``dont-discover`` array to disable it.
+You can add the provider class to the `dont-discover` array to disable it.
 
-Then you need to register it manually again.
-
-## Configuration
-
-You may override the default configurations. 
-To do that, first you have to publish the config file with the following command:
-``php artisan vendor:publish`` and use the ``i18n-config`` tag to copy the config file.
+Then you can manually register it like above.
 
 ## Translations in view files
 
-You can access to the ``$translations`` variable, anywhere in your view files. 
-It's a collection instance, so you have the flexibility what the collection service provides:
-
-```html
-<script>
-    window.translations = {{ $translations->toJson() }};
-    // or
-    window.translations = @json($translations);
-</script>
-```
-
-Also, you can use the ``@translations`` blade directive.
-This directive saves time for you and automatically wrap the translations to a ``<script>`` tag.
+you can use the `@translations` blade directive.
 
 ```html
 @translations
@@ -66,21 +48,18 @@ You may override the default key for the translations. You can do that by passin
 <script>window.myTranslations = {{ $translations->toJson() }}</script>
 ```
 
-You can set the specific views where you want to share the translations in the configuration file.
-You can set a single value or an array of values.
-
 ## Publishing and using the JavaScript library
 
-You can publish the JS file like the config file, but you need to use a different tag.
-Use the ``php artisan vendor:publish`` command and choose the ``i18n-js`` tag.
-After publishing you can find your fresh copy in the ``resources/assets/js/vendor/i18n`` folder.
+You can publish the JS file, Use the `php artisan vendor:publish --tag=i18n-js`
+
+After publishing you can find your fresh copy in the `resources/assets/vendor/i18n` folder.
 
 ### Using the I18n.js
 
-Then you can import the *I18n* class and assign it to the ``window`` object.
+Then you can import the *I18n* class and assign it to the `window` object.
 
 ```js
-import I18n from './vendor/i18n/I18n';
+import I18n from './../vendor/i18n/I18n';
 window.I18n = I18n;
 ```
 
@@ -92,7 +71,7 @@ From this point you can initialize the translation service anywhere from your ap
 let translator = new I18n;
 ```
 
-By default, it uses the ``translations`` key in the ``window`` object. 
+By default, it uses the `translations` key in the `window` object.
 If you want to use the custom one you set in the blade directive, pass the same key to the constructor.
 
 ```js
@@ -125,11 +104,11 @@ computed: {
 
 ### Methods
 
-The package comes with two methods on JS side. The ``trans()`` and the ``trans_choice()``.
+The package comes with two methods on JS side. The `trans()` and the `trans_choice()``.
 
-#### ``trans()``
+#### `trans()``
 
-The ``trans`` method accepts the key of the translation and the attributes what we want to replace, but it's optional.
+The `trans` method accepts the key of the translation and the attributes what we want to replace, but it's optional.
 
 ```js
 translator.trans('auth.failed');
@@ -141,9 +120,9 @@ translator.trans('auth.throttle', { seconds: 60 });
 // Too many login attempts. Please try again in 60 seconds.
 ```
 
-#### ``trans_choice()``
+#### `trans_choice()``
 
-The ``trans_choice`` method determines if the translation should be pluralized or nor by the given cout.
+The `trans_choice` method determines if the translation should be pluralized or nor by the given cout.
 Also, it accepts the attributes we want to replace.
 
 Let's say we have the following translation line:
@@ -152,7 +131,7 @@ Let's say we have the following translation line:
     'attempts' => 'Be careful, you have :attempts attempt left.|You still have :attempts attempts left.',
 ]
 ```
-> Note, the plural and the singular verions are separated with the ``|`` character!
+> Note, the plural and the singular verions are separated with the `|` character!
 
 ```js
 translator.trans_choice('auth.attempts', 1, { attempts: 'only one' });
