@@ -2,55 +2,38 @@
 
 namespace Pine\I18n;
 
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class I18nServiceProvider extends ServiceProvider
 {
+    protected $lang_path;
+
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
-        // Publish the configuration file
-        $this->publishes([
-            __DIR__.'/../config/i18n.php' => config_path('i18n.php'),
-        ], 'i18n-config');
+        $this->lang_path = resource_path('lang');
 
         // Publish the assets
         $this->publishes([
-            __DIR__.'/../resources/assets/js' => resource_path('assets/js/vendor/i18n'),
+            __DIR__ . '/../resources/assets/js' => resource_path('assets/vendor/i18n'),
         ], 'i18n-js');
-
-        // Share the translations with the views
-        View::composer(config('i18n.views'), function ($view) {
-            return $view->with('translations', $this->getTranslations());
-        });
 
         // Register the custom blade directive
         Blade::directive('translations', function ($name) {
             $name = str_replace("'", '', $name ?: 'translations');
-            
-            return "<script>window.{$name}" . ' = <?php echo $translations->toJson(); ?></script>';
-        });
-    }
+            $data = collect($this->getTranslations())->toJson();
 
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        // Merge the config
-        $this->mergeConfigFrom(
-            __DIR__.'/../config/i18n.php', 'i18n'
-        );
+            return
+<<<EOT
+<script>
+    var lang = '<?php echo app()->getLocale() ?>'
+    window.$name = $data
+</script>
+EOT;
+        });
     }
 
     /**
@@ -60,12 +43,40 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function getTranslations()
     {
-        return collect(File::files(
-            resource_path('lang/'.App::getLocale())
-        ))->flatMap(function ($file) {
-            return [
-                ($translation = $file->getBasename('.php')) => trans($translation),
-            ];
-        });
+        $locales       = $this->getLocales();
+        $defaultLocale = array_key_exists('en', $locales) ? 'en' : $locales[0];
+        $defaultFiles  = app('files')->files($this->lang_path . "/$defaultLocale");
+        $res           = [];
+
+        foreach ($defaultFiles as $file) {
+            $name = $file->getBasename('.php');
+
+            foreach ($locales as $locale) {
+                $dir  = resource_path("lang/$locale/$name.php");
+                $data = include $dir;
+                $keys = array_keys($data);
+
+                foreach ($keys as $key) {
+                    $res[$name][$key][$locale] = trans("$name.$key", [], $locale);
+                }
+            }
+        }
+
+        return $res;
+    }
+
+    protected function getLocales()
+    {
+        $locales = [];
+
+        foreach (app('files')->directories($this->lang_path) as $dir) {
+            if (ends_with($dir, 'vendor')) {
+                continue;
+            }
+
+            $locales[] = substr($dir, strrpos($dir, '/') + 1);
+        }
+
+        return $locales;
     }
 }
