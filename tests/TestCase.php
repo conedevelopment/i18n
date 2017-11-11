@@ -14,14 +14,10 @@ abstract class TestCase extends BaseTestCase
         parent::setUp();
 
         View::addNamespace('i18n', __DIR__.'/views');
-        
-        Route::get('/i18n/allowed', function () { return view('i18n::allowed'); });
-        Route::get('/i18n/disabled', function () { return view('i18n::disabled'); });
-    }
 
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['config']->set('i18n.views', 'i18n::allowed');
+        Route::get('/i18n', function () {
+            return view('i18n::translations');
+        });
     }
 
     protected function getPackageProviders($app)
