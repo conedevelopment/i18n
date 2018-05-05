@@ -11,9 +11,9 @@ If you have any question how the package works, we suggest to read this post:
 
 You can install the package with composer, running the ``composer require thepinecode/i18n`` command.
 
-### Laravel 5.5
+### Laravel 5.5 and up
 
-If you are using version 5.5, there is nothing else to do.
+If you are using version 5.5 and up, there is nothing else to do.
 Since the package supports autodiscovery, Laravel will register the service provider automatically behind the scenes.
 
 #### Disable the autodiscovery for the package
@@ -37,16 +37,16 @@ This directive automatically wrap the translations to a ``<script>`` tag.
 @translations
 
 <!-- The result -->
-<script>window.translations = {auth: {...}, validation: {...}}</script>
+<script>window.translations = { auth: {...}, validation: {...} }</script>
 ```
 
 You may override the default key for the translations. You can do that by passing a string to the blade directive.
 
 ```html
-@translations('myTranslations')
+@translations ('myTranslations')
 
 <!-- The result -->
-<script>window.myTranslations = {auth: {...}, validation: {...}}</script>
+<script>window.myTranslations = { auth: {...}, validation: {...} }</script>
 ```
 
 ## Publishing and using the JavaScript library

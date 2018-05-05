@@ -22,10 +22,8 @@ class I18nServiceProvider extends ServiceProvider
         ]);
 
         // Register the custom blade directive
-        Blade::directive('translations', function ($name) {
-            $name = str_replace("'", '', $name ?: 'translations');
-
-            return "<script>window.{$name}" . ' = ' . $this->getTranslations() .'</script>';
+        Blade::directive('translations', function ($key) {
+            return sprintf('<script>window[%s] = %s</script>', $key ?: "'translations'", $this->getTranslations());
         });
     }
 
@@ -36,9 +34,9 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function getTranslations()
     {
-        return collect(File::files(
-            resource_path('lang/'.App::getLocale())
-        ))->flatMap(function ($file) {
+        $files = File::files(resource_path('lang/'.App::getLocale()));
+
+        return collect($files)->flatMap(function ($file) {
             return [
                 ($translation = $file->getBasename('.php')) => trans($translation),
             ];
