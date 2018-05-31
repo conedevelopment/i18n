@@ -171,7 +171,7 @@ translator.trans_choice('auth.attempts', 25, { number: 25 });
 ### Transforming replacement parameters
 
 Like in Laravel's functionality, you can transform your parameters to upper case, or convert
-only the first character to capital letter. All you need to do, to modify your translations.
+only the first character to capital letter. All you need to do, to modify your placeholders.
 
 ```php
 [
