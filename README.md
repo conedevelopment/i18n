@@ -168,6 +168,30 @@ translator.trans_choice('auth.attempts', 25, { number: 25 });
 // There are many (25)
 ```
 
+### Transforming replacement parameters
+
+Like in Laravel's functionality, you can transform your parameters to upper case, or convert
+only the first character to capital letter. All you need to do, to modify your translations.
+
+```php
+[
+    'welcome' => 'Welcome, :NAME',
+    'goodbye' => 'Goodbye, :Name',
+]
+```
+> If you want, you can pass the same parameter with different
+> modifiers in one line as well, like `:NAME`, `:name` or `:Name`.
+
+```js
+translator.trans('messages.welcome', { name: 'pine' });
+
+// Welcome, PINE
+
+translator.trans('messages.goodbye', { name: 'pine' });
+
+// Goodbye, Pine
+```
+
 ## Contact
 
 If you found a bug or you have an idea connecting the package, feel free to open an issue.
