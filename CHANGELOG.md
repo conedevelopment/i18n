@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.3.1 (2018-05-31)
+### Added
+- Transforming replacements
+
 ## v0.3.0 (2018-05-31)
 ### Added
 - Add pluralization range handling
@@ -19,7 +23,6 @@
 - Config file
 - View composer
 - Unnecessary tests
-
 
 ## v0.1.1 (2017-11-01)
 ### Changed

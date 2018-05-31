@@ -80,7 +80,13 @@ export default class I18n
     _replace(translation, replace)
     {
         for (let placeholder in replace) {
-            translation = translation.replace(`:${placeholder}`, replace[placeholder]);
+            translation = translation
+                .replace(`:${placeholder}`, replace[placeholder])
+                .replace(`:${placeholder.toUpperCase()}`, replace[placeholder].toUpperCase())
+                .replace(
+                    `:${placeholder.charAt(0).toUpperCase()}${placeholder.slice(1)}`,
+                    replace[placeholder].charAt(0).toUpperCase()+replace[placeholder].slice(1)
+                );
         }
 
         return translation.trim();
