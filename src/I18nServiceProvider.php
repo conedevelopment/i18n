@@ -23,7 +23,7 @@ class I18nServiceProvider extends ServiceProvider
 
         // Register the custom blade directive
         Blade::directive('translations', function ($key) {
-            return sprintf('<script>window[%s] = %s</script>', $key ?: "'translations'", $this->getTranslations());
+            return sprintf('<script>window[%s] = %s</script>', $key ?: "'translations'", $this->translations());
         });
     }
 
@@ -32,7 +32,7 @@ class I18nServiceProvider extends ServiceProvider
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function getTranslations()
+    protected function translations()
     {
         $files = File::files(resource_path('lang/'.App::getLocale()));
 
