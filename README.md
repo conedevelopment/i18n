@@ -2,7 +2,7 @@
 
 Push your Laravel translations to the front-end and use them easily with JavaScript.
 
-The JSON bases translations are not supported!
+The JSON based translations are not supported!
 
 If you have any question how the package works, we suggest to read this post:
 [Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
