@@ -5,8 +5,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Gergo D. Nagy",
-            "email": "dngege@gmail.com"
+            "name": "Gergő D. Nagy",
+            "email": "hello@iamgergo.com"
         }
     ],
     "autoload": {
@@ -20,10 +20,10 @@
         }
     },
     "require": {
-        "php" : "^7.0"
+        "php" : "^7.1"
     },
     "require-dev": {
-        "orchestra/testbench":"~3.5.0"
+        "orchestra/testbench":"~3.8.0"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
