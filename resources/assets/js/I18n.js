@@ -93,7 +93,7 @@ export default class I18n
     }
 
     /**
-     * The extract helper.
+     * Extract values from objects by dot notation.
      *
      * @param  {string}  key
      * @param  {mixed}  value
