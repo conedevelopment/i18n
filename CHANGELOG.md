@@ -1,5 +1,15 @@
 # Changelog
 
+## v0.4.0 (2018-03-24)
+
+### Added
+- phpunit.xml
+
+### Changed
+- .gitignore
+- orchestra/testbench version (3.5.0 -> 3.8.0)
+- composer.json
+
 ## v0.3.1 (2018-05-31)
 ### Added
 - Transforming replacements
