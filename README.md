@@ -50,12 +50,11 @@ You may override the default key for the translations. You can do that by passin
 ```
 
 By default, it gets translations from `resource_path('lang')` directory.
-If you want to use a custom directory (from a package for example), pass the directory path to the blade directive.
+If you want to use a custom directory (from a package for example), pass the directory's path to the blade directive and the package's namespace.
 
 ```html
-@translations ('myTranslations', 'vendor/vendor_name/package/lang')
+@translations ('myTranslations', 'vendor/vendor_name/package/lang', 'myNamespace')
 ```
-
 
 ## Publishing and using the JavaScript library
 
