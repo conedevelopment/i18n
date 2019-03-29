@@ -49,6 +49,14 @@ You may override the default key for the translations. You can do that by passin
 <script>window['myTranslations'] = { auth: {...}, validation: {...} }</script>
 ```
 
+By default, it gets translations from `resource_path('lang')` directory.
+If you want to use a custom directory (from a package for example), pass the directory path to the blade directive.
+
+```html
+@translations ('myTranslations', 'vendor/vendor_name/package/lang')
+```
+
+
 ## Publishing and using the JavaScript library
 
 Use the `php artisan vendor:publish` command and choose the `Pine\I18n\I18nServiceProvider` provider.
@@ -75,7 +83,16 @@ By default, it uses the `translations` key in the `window` object.
 If you want to use the custom one you set in the blade directive, pass the same key to the constructor.
 
 ```js
-let traslator = new I18n('myTranslations');
+let translator = new I18n('myTranslations');
+```
+
+By default it uses `.` as namespace separator (e.g. default.hello).
+If you want to use `.` in your translation keys, you can change this separator.
+
+```js
+let translator = new I18n('myTranslations', ':');
+
+translator.trans('default:hello.word');
 ```
 
 ### Using it as a Vue service

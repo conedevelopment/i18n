@@ -4,11 +4,13 @@ export default class I18n
      * Initialize a new translation instance.
      *
      * @param  {string}  key
+     * @param  {string}  separator
      * @return {void}
      */
-    constructor(key = 'translations')
+    constructor(key = 'translations', separator = '.')
     {
         this.key = key;
+        this.separator = separator;
     }
 
     /**
@@ -101,6 +103,6 @@ export default class I18n
      */
     _extract(key, value = null)
     {
-        return key.toString().split('.').reduce((t, i) => t[i] || (value || key), window[this.key]);
+        return key.toString().split(this.separator).reduce((t, i) => t[i] || (value || key), window[this.key]);
     }
 }
