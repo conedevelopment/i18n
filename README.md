@@ -194,7 +194,7 @@ translator.trans('messages.goodbye', { name: 'pine' });
 
 ### Package translations
 
-Thanks to the idea of [https://github.com/sardoj](Jonathan), package translations are supported by default.
+Thanks to the idea of [Jonathan](https://github.com/sardoj), package translations are supported by default.
 You can access to the translations as in Laravel, using the predefined namespace.
 
 ```js

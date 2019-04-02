@@ -3,7 +3,7 @@
 ## v0.5.0 (2018-04-02)
 
 ### Added
-- support package translations, thanks for the idea to [https://github.com/sardoj](Jonathan)
+- support package translations, thanks for the idea to [Jonathan](https://github.com/sardoj)
 
 ## v0.4.0 (2018-03-24)
 
