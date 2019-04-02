@@ -89,7 +89,7 @@ export default class I18n
                 );
         }
 
-        return translation.trim();
+        return translation;
     }
 
     /**
@@ -101,6 +101,13 @@ export default class I18n
      */
     _extract(key, value = null)
     {
-        return key.toString().split('.').reduce((t, i) => t[i] || (value || key), window[this.key]);
+        let path = key.toString().split('::');
+        let keys = path.pop().toString().split('.');
+
+        if (path.length > 0) {
+            path[0] += '::';
+        }
+
+        return path.concat(keys).reduce((t, i) => t[i] || (value || key), window[this.key]);
     }
 }
