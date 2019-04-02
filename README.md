@@ -75,7 +75,7 @@ By default, it uses the `translations` key in the `window` object.
 If you want to use the custom one you set in the blade directive, pass the same key to the constructor.
 
 ```js
-let traslator = new I18n('myTranslations');
+let translator = new I18n('myTranslations');
 ```
 
 ### Using it as a Vue service
@@ -191,6 +191,21 @@ translator.trans('messages.goodbye', { name: 'pine' });
 
 // Goodbye, Pine
 ```
+
+### Package translations
+
+Thanks to the idea of [https://github.com/sardoj](Jonathan), package translations are supported by default.
+You can access to the translations as in Laravel, using the predefined namespace.
+
+```js
+translator.trans('courier::messages.message');
+```
+
+### Fallback locales
+
+Also, if there are no translations is not available in the current langauge,
+the package will look for the fallback locale's translations.
+If there is no translations available in the fallback locale, the missing translations won't appear.
 
 ## Contribute
 
