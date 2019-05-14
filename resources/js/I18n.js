@@ -101,13 +101,9 @@ export default class I18n
      */
     _extract(key, value = null)
     {
-        let path = key.toString().split('::');
-        let keys = path.pop().toString().split('.');
+        let path = key.toString().replace(/(?<=::)/, '[split]').split('[split]'),
+            keys = path.pop().toString().split('.');
 
-        if (path.length > 0) {
-            path[0] += '::';
-        }
-
-        return path.concat(keys).reduce((t, i) => t[i] || (value || key), window[this.key]);
+        return path.push(...keys).reduce((t, i) => t[i] || (value || key), window[this.key]);
     }
 }
