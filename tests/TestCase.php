@@ -13,10 +13,10 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
 
-        View::addNamespace('i18n', __DIR__.'/views');
+        View::addNamespace('i18n', __DIR__. '/views');
 
-        Route::get('/i18n', function () {
-            return view('i18n::translations');
+        Route::get('/i18n/{view}', function ($view) {
+            return view("i18n::{$view}");
         });
     }
 
