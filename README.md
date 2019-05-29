@@ -31,7 +31,7 @@ Go to the `config/app.php` file and add the `Pine\I18n\I18nServiceProvider::clas
 ## Translations in view files
 
 You can use the `@translations` blade directive.
-This directive automatically wrap the translations to a `<script>` tag.
+This directive automatically wraps the translations to a `<script>` tag.
 
 ```html
 @translations
