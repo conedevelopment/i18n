@@ -37,7 +37,7 @@ This directive automatically wrap the translations to a `<script>` tag.
 @translations
 
 <!-- The result -->
-<script>window['translations'] = { auth: {...}, validation: {...} }</script>
+<script>window.translations = { auth: {...}, validation: {...} }</script>
 ```
 
 You may override the default key for the translations. You can do that by passing a string to the blade directive.
@@ -46,7 +46,7 @@ You may override the default key for the translations. You can do that by passin
 @translations ('myTranslations')
 
 <!-- The result -->
-<script>window['myTranslations'] = { auth: {...}, validation: {...} }</script>
+<script>window.myTranslations = { auth: {...}, validation: {...} }</script>
 ```
 
 ## Publishing and using the JavaScript library
