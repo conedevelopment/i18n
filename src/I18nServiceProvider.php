@@ -24,7 +24,11 @@ class I18nServiceProvider extends ServiceProvider
 
         // Register the @translations blade directive
         Blade::directive('translations', function ($key) {
-            return sprintf('<script>window[%s] = %s</script>', $key ?: "'translations'", $this->translations());
+            return sprintf(
+                '<script>window.%s = %s</script>',
+                str_replace(['"', "'"], '', $key ?: 'translations'),
+                $this->translations()
+            );
         });
     }
 

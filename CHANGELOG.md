@@ -1,15 +1,19 @@
 # Changelog
 
-## v0.5.0 (2018-04-02)
+## v0.5.1 (2018-05-29)
+### Added
+- new test for custom translations' object key
+### Chaged
+- JS regex for object extracting
+- trimming quotes from translations' object key
 
+## v0.5.0 (2018-04-02)
 ### Added
 - support package translations, thanks for the idea to [Jonathan](https://github.com/sardoj)
 
 ## v0.4.0 (2018-03-24)
-
 ### Added
 - phpunit.xml
-
 ### Changed
 - .gitignore
 - orchestra/testbench version (3.5.0 -> 3.8.0)
