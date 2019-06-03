@@ -22,7 +22,7 @@ abstract class TestCase extends BaseTestCase
 
     protected function getEnvironmentSetUp($app)
     {
-        $app['translator']->addNamespace(__DIR__ . '/lang', 'i18n');
+        $app['translator']->addNamespace('i18n', __DIR__ . '/lang');
     }
 
     protected function getPackageProviders($app)

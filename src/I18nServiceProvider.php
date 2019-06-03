@@ -75,7 +75,7 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function packageTranslations()
     {
-        return collect($this->app['translator']->getLoader()->namespaces())->flatMap(function ($namespace, $dir) {
+        return collect($this->app['translator']->getLoader()->namespaces())->flatMap(function ($dir, $namespace) {
             return collect(File::directories($dir))->flatMap(function ($dir) use ($namespace) {
                 return [
                     basename($dir) => collect([
