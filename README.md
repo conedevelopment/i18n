@@ -52,7 +52,7 @@ You may override the default key for the translations. You can do that by passin
 ## Publishing and using the JavaScript library
 
 Use the `php artisan vendor:publish` command and choose the `Pine\I18n\I18nServiceProvider` provider.
-After publishing you can find your fresh copy in the `resources/assets/js/vendor` folder.
+After publishing you can find your fresh copy in the `resources/js/vendor` folder.
 
 ### Using the I18n.js
 
