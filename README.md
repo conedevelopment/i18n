@@ -56,7 +56,7 @@ After publishing you can find your fresh copy in the `resources/js/vendor` folde
 
 ### Using the I18n.js
 
-Then you can import the *I18n* class and assign it to the `window` object.
+Then you can import the `I18n` class and assign it to the `window` object.
 
 ```js
 import I18n from './vendor/I18n';
