@@ -2,7 +2,7 @@
 
 ## v0.6.2 (2018-06-03 )
 ### Changed
-- revet JS regexp to have better browser support
+- revert JS regexp to have better browser support
 
 ## v0.6.1 (2018-06-03 )
 ### Fixed
