@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.6.1 (2018-06-03 )
+### Fixed
+- use concat in JS instead of push
+- fix parameter ordering when mapping package translations
+
 ## v0.6.0 (2018-06-02)
 ### Added
 - support multilang applications and packages
