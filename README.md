@@ -203,8 +203,8 @@ translator.trans('courier::messages.message');
 
 ### Multiple locales
 
-Multiple locales are supported. You can change you locale anytime and behind the scenes,
-the proper translations will be rendered.
+Multiple locales are supported. You can change the application's locale anytime.
+Behind the scenes the proper translations will be rendered, if it exists.
 
 ### Fallback locales
 
