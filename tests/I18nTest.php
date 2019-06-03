@@ -36,7 +36,6 @@ class I18nTest extends TestCase
     public function translations_can_fallback_if_locale_does_not_exists()
     {
         App::setLocale('fr');
-
         $this->get('/i18n/translations')
             ->assertSee(json_encode(trans('auth')))
             ->assertSee('"i18n::":{"messages":{"test":"Test"}');
