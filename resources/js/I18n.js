@@ -85,7 +85,7 @@ export default class I18n
                 .replace(`:${placeholder.toUpperCase()}`, replace[placeholder].toUpperCase())
                 .replace(
                     `:${placeholder.charAt(0).toUpperCase()}${placeholder.slice(1)}`,
-                    replace[placeholder].charAt(0).toUpperCase()+replace[placeholder].slice(1)
+                    replace[placeholder].charAt(0).toUpperCase() + replace[placeholder].slice(1)
                 );
         }
 
