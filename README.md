@@ -214,11 +214,12 @@ If there is no translations available in the fallback locale, the missing transl
 
 ## Performance
 
-The translations are generated when the view are compiled. It means they are cached.
-It's much more performance friendly than generating them on runtime or running and AJAX query to get the translations.
+The translations are generated when the views are compiled.
+It means they are cached and stored as strings in the compiled views.
+It's much more performance friendly than generating them on runtime or running and AJAX request to fetch the translations.
 
-Behind the scenes there is a switch - case that determines which translations should be present,
-based on the current locale. This way only the current translations are pushed to the window object and not all of them.
+Behind the scenes there is a switch - case that determines which translations should be present, based on the current locale.
+This way only the current translations are pushed to the window object and not all of them.
 
 ## Limitations
 
