@@ -104,6 +104,6 @@ export default class I18n
         let path = key.toString().split(/(?<=::)/),
             keys = path.pop().toString().split('.');
 
-        return path.push(...keys).reduce((t, i) => t[i] || (value || key), window[this.key]);
+        return path.concat(keys).reduce((t, i) => t[i] || (value || key), window[this.key]);
     }
 }
