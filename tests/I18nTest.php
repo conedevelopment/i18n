@@ -19,12 +19,26 @@ class I18nTest extends TestCase
     }
 
     /** @test */
-    public function translations_can_be_multilang()
+    public function translations_can_be_multilocale()
     {
         App::setLocale('hu');
-        $this->get('/i18n/translations')->assertSee('"i18n::":{"messages":{"test":"Teszt"}');
+        $this->get('/i18n/translations')
+            ->assertSee(json_encode(trans('auth')))
+            ->assertSee('"i18n::":{"messages":{"test":"Teszt"}');
 
         App::setLocale('en');
-        $this->get('/i18n/translations')->assertSee('"i18n::":{"messages":{"test":"Test"}');
+        $this->get('/i18n/translations')
+            ->assertSee(json_encode(trans('auth')))
+            ->assertSee('"i18n::":{"messages":{"test":"Test"}');
+    }
+
+    /** @test */
+    public function translations_can_fallback_if_locale_does_not_exists()
+    {
+        App::setLocale('fr');
+
+        $this->get('/i18n/translations')
+            ->assertSee(json_encode(trans('auth')))
+            ->assertSee('"i18n::":{"messages":{"test":"Test"}');
     }
 }
