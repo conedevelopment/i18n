@@ -2,7 +2,7 @@
 
 Push your Laravel translations to the front-end and use them easily with JavaScript.
 
-The JSON based translations are not supported!
+The JSON file translations are not supported!
 
 If you have any question how the package works, we suggest to read this post:
 [Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
@@ -200,6 +200,11 @@ You can access to the translations as in Laravel, using the predefined namespace
 ```js
 translator.trans('courier::messages.message');
 ```
+
+### Multiple locales
+
+Multiple locales are supported. You can change you locale anytime and behind the scenes,
+the proper translations will be rendered.
 
 ### Fallback locales
 

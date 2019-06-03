@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.6.0 (2018-06-02)
+### Added
+- support multilang applications and packages
+- tests for multilang feature
+
 ## v0.5.1 (2018-05-29)
 ### Added
 - new test for custom translations' object key
