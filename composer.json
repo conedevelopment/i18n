@@ -16,7 +16,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Pine\\I18n\\Test\\": "tests/"
+            "Pine\\I18n\\Tests\\": "tests/"
         }
     },
     "require": {
