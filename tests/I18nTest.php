@@ -1,6 +1,6 @@
 <?php
 
-namespace Pine\I18n\Test;
+namespace Pine\I18n\Tests;
 
 use Illuminate\Support\Facades\App;
 
