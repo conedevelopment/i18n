@@ -32,8 +32,8 @@ class I18nServiceProvider extends ServiceProvider
             })->implode(' ');
 
             return sprintf(
-                '<script>window.%s = <?php switch (App::getLocale()) { %s } ?>;</script>',
-                str_replace(['"', "'"], '', $key ?: 'translations'), $cases
+                '<script>window[%s] = <?php switch (App::getLocale()) { %s } ?>;</script>',
+                $key ?: "'translations'", $cases
             );
         });
     }
