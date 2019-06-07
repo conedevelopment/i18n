@@ -89,7 +89,7 @@ export default class I18n
                 );
         }
 
-        return translation;
+        return translation.trim();
     }
 
     /**
