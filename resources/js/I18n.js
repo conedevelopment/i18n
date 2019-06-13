@@ -39,6 +39,8 @@ export default class I18n
 
         translation = translation || (count > 1 ? translations[1] : translations[0]);
 
+        translation = translation.replace(/\[.*?\]/, '');
+
         return this._replace(translation, replace);
     }
 
@@ -56,7 +58,7 @@ export default class I18n
         if (! match) return;
 
         if (match[1].includes(',')) {
-            let [from, to] = match[1].split(',');
+            let [from, to] = match[1].split(',', 2);
 
             if (to === '*' && count >= from) {
                 return match[2];
@@ -82,10 +84,10 @@ export default class I18n
         for (let placeholder in replace) {
             translation = translation
                 .replace(`:${placeholder}`, replace[placeholder])
-                .replace(`:${placeholder.toUpperCase()}`, replace[placeholder].toUpperCase())
+                .replace(`:${placeholder.toUpperCase()}`, replace[placeholder].toString().toUpperCase())
                 .replace(
                     `:${placeholder.charAt(0).toUpperCase()}${placeholder.slice(1)}`,
-                    replace[placeholder].charAt(0).toUpperCase() + replace[placeholder].slice(1)
+                    replace[placeholder].toString().charAt(0).toUpperCase() + replace[placeholder].toString().slice(1)
                 );
         }
 
