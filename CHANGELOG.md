@@ -1,5 +1,10 @@
 # Changelog
 
+
+## v0.6.5 (2018-06-13)
+### Fixed
+- add fallback for {}-s as well
+
 ## v0.6.4 (2018-06-13)
 ### Fixed
 - add fallback for invalid translations
