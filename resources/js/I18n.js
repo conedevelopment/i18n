@@ -39,7 +39,7 @@ export default class I18n
 
         translation = translation || (count > 1 ? translations[1] : translations[0]);
 
-        translation = translation.replace(/\[.*?\]/, '');
+        translation = translation.replace(/\[.*?\]|\{.*?\}/, '');
 
         return this._replace(translation, replace);
     }
