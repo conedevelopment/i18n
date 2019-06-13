@@ -1,10 +1,18 @@
 # Changelog
 
-## v0.6.2 (2018-06-03 )
+## v0.6.4 (2018-06-13)
+### Fixed
+- add fallback for invalid translations
+
+## v0.6.3 (2018-06-07)
+### Fixed
+- trim whitespaces
+
+## v0.6.2 (2018-06-03)
 ### Changed
 - revert JS regexp to have better browser support
 
-## v0.6.1 (2018-06-03 )
+## v0.6.1 (2018-06-03)
 ### Fixed
 - use concat in JS instead of push
 - fix parameter ordering when mapping package translations
