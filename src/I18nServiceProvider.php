@@ -17,7 +17,10 @@ class I18nServiceProvider extends ServiceProvider
     {
         // Publish the assets
         $this->publishes([
-            __DIR__ . '/../resources/js' => resource_path('js/vendor'),
+            __DIR__ . '/../resources/js' => resource_path(
+                version_compare($this->app->version(), '5.7.0', '<')
+                ? 'assets/js/vendor' : 'js/vendor'
+            ),
         ]);
 
         // Register the @translations blade directive
