@@ -81,6 +81,10 @@ export default class I18n
      */
     _replace(translation, replace)
     {
+        if (typeof translation !== 'string') {
+            return translation;
+        }
+
         for (let placeholder in replace) {
             translation = translation
                 .replace(`:${placeholder}`, replace[placeholder])
@@ -91,7 +95,7 @@ export default class I18n
                 );
         }
 
-        return typeof translation === 'string' ? translation.trim() : translation;
+        return translation.trim()
     }
 
     /**
