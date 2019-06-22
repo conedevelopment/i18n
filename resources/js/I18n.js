@@ -91,7 +91,7 @@ export default class I18n
                 );
         }
 
-        return translation.trim();
+        return typeof translation === 'string' ? translation.trim() : translation;
     }
 
     /**
