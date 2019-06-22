@@ -81,7 +81,7 @@ export default class I18n
      */
     _replace(translation, replace)
     {
-        if (typeof translation !== 'string') {
+        if (typeof translation === 'object') {
             return translation;
         }
 
