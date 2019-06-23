@@ -86,7 +86,7 @@ export default class I18n
         }
 
         for (let placeholder in replace) {
-            translation = translation
+            translation = translation.toString()
                 .replace(`:${placeholder}`, replace[placeholder])
                 .replace(`:${placeholder.toUpperCase()}`, replace[placeholder].toString().toUpperCase())
                 .replace(
@@ -95,7 +95,7 @@ export default class I18n
                 );
         }
 
-        return translation.trim()
+        return translation.toString().trim()
     }
 
     /**
