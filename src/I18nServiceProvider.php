@@ -78,7 +78,9 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function packageTranslations()
     {
-        return collect($this->app['translator']->getLoader()->namespaces())->flatMap(function ($dir, $namespace) {
+        $namespaces = $this->app['translator']->getLoader()->namespaces();
+
+        return collect($namespaces)->map(function ($dir, $namespace) {
             return collect(File::directories($dir))->flatMap(function ($dir) use ($namespace) {
                 return [
                     basename($dir) => collect([
@@ -89,7 +91,11 @@ class I18nServiceProvider extends ServiceProvider
                         })->toArray(),
                     ]),
                 ];
-            });
+            })->toArray();
+        })->reduce(function ($collection, $item) {
+            return collect(array_merge_recursive($collection->toArray(), $item));
+        }, collect())->map(function ($item) {
+            return collect($item);
         });
     }
 

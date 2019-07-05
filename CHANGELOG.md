@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.6.7 (2018-07-05)
+### Fixed
+- Only one package added to the list of translations [#12](https://github.com/thepinecode/i18n/issues/12)
+
 ## v0.6.6 (2018-06-22)
 ### Fixed
 - JS string conversions
@@ -10,15 +14,15 @@
 
 ## v0.6.4 (2018-06-13)
 ### Fixed
-- add fallback for invalid translations
+- add fallback for invalid translations [#11](https://github.com/thepinecode/i18n/issues/11)
 
 ## v0.6.3 (2018-06-07)
 ### Fixed
-- trim whitespaces
+- trim whitespaces [#10](https://github.com/thepinecode/i18n/issues/10)
 
 ## v0.6.2 (2018-06-03)
 ### Changed
-- revert JS regexp to have better browser support
+- revert JS regexp to have better browser support [#8](https://github.com/thepinecode/i18n/issues/8)
 
 ## v0.6.1 (2018-06-03)
 ### Fixed
@@ -27,7 +31,7 @@
 
 ## v0.6.0 (2018-06-02)
 ### Added
-- support multilang applications and packages
+- support multilang applications and packages [#7](https://github.com/thepinecode/i18n/issues/7)
 - tests for multilang feature
 
 ## v0.5.1 (2018-05-29)

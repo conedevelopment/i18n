@@ -15,7 +15,7 @@ class I18nTest extends TestCase
     /** @test */
     public function translations_can_have_custom_key()
     {
-        $this->get('/i18n/custom-key')->assertSee('window.custom = ');
+        $this->get('/i18n/custom-key')->assertSee("window['custom'] = ");
     }
 
     /** @test */
