@@ -2,8 +2,8 @@
 
 namespace Pine\I18n;
 
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
 
 class I18nServiceProvider extends ServiceProvider
@@ -17,7 +17,7 @@ class I18nServiceProvider extends ServiceProvider
     {
         // Publish the assets
         $this->publishes([
-            __DIR__ . '/../resources/js' => resource_path(
+            __DIR__.'/../resources/js' => resource_path(
                 version_compare($this->app->version(), '5.7.0', '<')
                 ? 'assets/js/vendor' : 'js/vendor'
             ),
@@ -84,7 +84,7 @@ class I18nServiceProvider extends ServiceProvider
             return collect(File::directories($dir))->flatMap(function ($dir) use ($namespace) {
                 return [
                     basename($dir) => collect([
-                        $namespace . '::' => collect($this->getFiles($dir))->flatMap(function ($file) {
+                        $namespace.'::' => collect($this->getFiles($dir))->flatMap(function ($file) {
                             return [
                                 $file->getBasename('.php') => (include $file->getPathname()),
                             ];
