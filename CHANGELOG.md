@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.7.0 (2020-01-15)
+### Changed
+- Upgraded testbench version
+- Updated license date
+- Refactored serviceprovider
+
 ## v0.6.7 (2018-07-05)
 ### Fixed
 - Only one package added to the list of translations [#12](https://github.com/thepinecode/i18n/issues/12)
