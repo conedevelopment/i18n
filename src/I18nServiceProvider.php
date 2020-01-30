@@ -51,13 +51,20 @@ class I18nServiceProvider extends ServiceProvider
         $translations = collect(File::directories(resource_path('lang')))->mapWithKeys(function ($dir) {
             return [
                 basename($dir) => collect($this->getFiles($dir))->flatMap(function ($file) {
-                    return [
-                        str_replace('/', '.', substr($file->getRelativePathname(), 0, -4)) => (include $file->getPathname()),
-                    ];
+                    $relativePathnameParts = explode('/', substr($file->getRelativePathname(), 0, -4));
+                    $relativePathnamePartsCount = count($relativePathnameParts);
+
+                    $array = [];
+                    $array[$relativePathnameParts[$relativePathnamePartsCount - 1]] = (include $file->getPathname());
+                    for ($i = $relativePathnamePartsCount - 2; $i > -1; $i--) {
+                        $array[$relativePathnameParts[$i]] = $array;
+                        unset($array[$relativePathnameParts[$i + 1]]);
+                    }
+
+                    return $array;
                 }),
             ];
         });
-
         $packageTranslations = $this->packageTranslations();
 
         return $translations->keys()->merge(
