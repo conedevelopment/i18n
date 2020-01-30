@@ -17,6 +17,7 @@ class I18nServiceProvider extends ServiceProvider
     {
         // Publish the assets
         $this->publishes([
+            __DIR__.'/../config/i18n.php' => config_path('i18n.php'),
             __DIR__.'/../resources/js' => resource_path(
                 version_compare($this->app->version(), '5.7.0', '<')
                 ? 'assets/js/vendor' : 'js/vendor'
@@ -48,9 +49,11 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function translations()
     {
-        $translations = collect(File::directories(resource_path('lang')))->mapWithKeys(function ($dir) {
+        $startDir = config('i18n.initial_dir');
+
+        $translations = collect(File::directories(resource_path('lang')))->mapWithKeys(function ($dir) use ($startDir) {
             return [
-                basename($dir) => collect($this->getFiles($dir))->flatMap(function ($file) {
+                basename($dir) => collect($this->getFiles($dir . $startDir))->flatMap(function ($file) {
                     return [
                         $file->getBasename('.php') => (include $file->getPathname()),
                     ];
