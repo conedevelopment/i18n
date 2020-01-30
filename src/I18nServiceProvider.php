@@ -52,7 +52,7 @@ class I18nServiceProvider extends ServiceProvider
             return [
                 basename($dir) => collect($this->getFiles($dir))->flatMap(function ($file) {
                     return [
-                        $file->getBasename('.php') => (include $file->getPathname()),
+                        str_replace('/', '.', substr($file->getRelativePathname(), 0, -4)) => (include $file->getPathname()),
                     ];
                 }),
             ];
@@ -106,7 +106,7 @@ class I18nServiceProvider extends ServiceProvider
     protected function getFiles($dir)
     {
         if (is_dir($dir)) {
-            return File::files($dir);
+            return File::allFiles($dir);
         }
 
         return [];
