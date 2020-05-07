@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.8.0 (2020-05-07)
+### Changed
+- Clear compiled views in local env to keep translations fresh [#18](https://github.com/thepinecode/i18n/pull/18)
+
 ## v0.7.0 (2020-01-15)
 ### Changed
 - Upgraded testbench version
