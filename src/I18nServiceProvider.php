@@ -4,6 +4,8 @@ namespace Pine\I18n;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 
 class I18nServiceProvider extends ServiceProvider
@@ -15,6 +17,11 @@ class I18nServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+        if (!App::isProduction()) {
+            Artisan::call('view:clear');
+        }
+
         // Publish the assets
         $this->publishes([
             __DIR__.'/../resources/js' => resource_path('js/vendor'),
