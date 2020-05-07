@@ -1,8 +1,12 @@
 # Changelog
 
-## v0.8.0 (2020-05-07)
+## v0.9.0 (2020-05-07)
 ### Changed
 - Clear compiled views in local env to keep translations fresh [#18](https://github.com/thepinecode/i18n/pull/18)
+
+## v0.8.0 (2020-03-09)
+### Changed
+- Migrate tests, set Laravel versions
 
 ## v0.7.0 (2020-01-15)
 ### Changed
