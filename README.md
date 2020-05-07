@@ -204,6 +204,8 @@ It's much more performance friendly than generating them on runtime or running a
 Behind the scenes there is a switch - case that determines which translations should be present, based on the current locale.
 This way only the current translations are pushed to the window object and not all of them.
 
+> Note: On local environment the cached views are getting cleared to keep translations fresh.
+
 ## Limitations
 
 The JSON file translations are not supported! Only the PHP array based key - value translations can be used.
