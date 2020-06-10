@@ -95,7 +95,7 @@ class I18nServiceProvider extends ServiceProvider
                         })->toArray(),
                     ]),
                 ];
-            })->toArray();
+            });
         })->reduce(function ($collection, $item) {
             return $collection->mergeRecursive($item);
         }, collect());

@@ -2,31 +2,26 @@
 
 namespace Pine\I18n\Tests;
 
+use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
+use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\View;
-use Orchestra\Testbench\TestCase as BaseTestCase;
-use Pine\I18n\I18nServiceProvider;
+use Pine\I18n\Tests\CreatesApplication;
 
 abstract class TestCase extends BaseTestCase
 {
+    use CreatesApplication;
+
     public function setUp(): void
     {
         parent::setUp();
+
+        $this->app['translator']->addNamespace('i18n', __DIR__.'/lang');
 
         View::addNamespace('i18n', __DIR__.'/views');
 
         Route::get('/i18n/{view}', function ($view) {
             return view("i18n::{$view}");
         });
-    }
-
-    protected function getEnvironmentSetUp($app)
-    {
-        $app['translator']->addNamespace('i18n', __DIR__.'/lang');
-    }
-
-    protected function getPackageProviders($app)
-    {
-        return [I18nServiceProvider::class];
     }
 }
