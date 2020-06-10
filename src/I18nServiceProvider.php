@@ -109,10 +109,6 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function getFiles($dir)
     {
-        if (is_dir($dir)) {
-            return File::files($dir);
-        }
-
-        return [];
+        return is_dir($dir) ? File::files($dir) : [];
     }
 }
