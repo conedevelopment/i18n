@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.9.1 (2020-06-10)
+### Changed
+- Replaced the testbench package
+
 ## v0.9.0 (2020-05-07)
 ### Changed
 - Clear compiled views in local env to keep translations fresh [#18](https://github.com/thepinecode/i18n/pull/18)
