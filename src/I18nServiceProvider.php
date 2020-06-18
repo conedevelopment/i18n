@@ -95,10 +95,12 @@ class I18nServiceProvider extends ServiceProvider
                         })->toArray(),
                     ]),
                 ];
-            });
+            })->toArray();
         })->reduce(function ($collection, $item) {
-            return $collection->mergeRecursive($item);
-        }, collect());
+            return collect(array_merge_recursive($collection->toArray(), $item));
+        }, collect())->map(function ($item) {
+            return collect($item);
+        });
     }
 
     /**
