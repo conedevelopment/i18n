@@ -1,5 +1,10 @@
 # Changelog
 
+## v0.9.2 (2020-07-04)
+### Fixed
+- Package commands are not found [#23](https://github.com/thepinecode/i18n/issues/23)
+- Fix badly encoded keys [#22](https://github.com/thepinecode/i18n/pull/22)
+
 ## v0.9.1 (2020-06-10)
 ### Changed
 - Replaced the testbench package
