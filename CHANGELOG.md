@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.0 (2020-10-16)
+### Added
+- Laravel 8 compatibility
+
 ## v0.9.2 (2020-07-04)
 ### Fixed
 - Package commands are not found [#23](https://github.com/thepinecode/i18n/issues/23)
