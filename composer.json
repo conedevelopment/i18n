@@ -20,11 +20,11 @@
         }
     },
     "require": {
-        "php" : "^7.2.5",
+        "php" : "^7.2.5 || ^8.0",
         "laravel/framework": "^6.0 || ^7.0 || ^8.0"
     },
     "require-dev": {
-        "laravel/laravel": "dev-master",
+        "laravel/laravel": "8.x-dev",
         "phpunit/phpunit": "^9.0"
     },
     "scripts": {
