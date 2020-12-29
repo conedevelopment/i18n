@@ -9,7 +9,7 @@ If you have any question how the package works, we suggest to read this post:
 
 ## Getting started
 
-You can install the package with composer, running the `composer require thepinecode/i18n` command.
+You can install the package with composer, running the `composer require conedevelopment/i18n` command.
 
 ## Translations in view files
 
