@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.1.0 (2020-12-29)
+### Added
+- PHP 8 compatibility
+- GitHub Actions
+
 ## v1.0.0 (2020-10-16)
 ### Added
 - Laravel 8 compatibility
