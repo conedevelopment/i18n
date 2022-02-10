@@ -45,7 +45,8 @@ class I18nServiceProvider extends ServiceProvider
      */
     protected function translations()
     {
-        $translations = collect(File::directories(resource_path('lang')))->mapWithKeys(function ($dir) {
+        $lang_dir = is_dir(base_path('lang')) ? base_path('lang') : resource_path('lang');
+        $translations = collect(File::directories($lang_dir))->mapWithKeys(function ($dir) {
             return [
                 basename($dir) => collect($this->getFiles($dir))->flatMap(function ($file) {
                     return [
