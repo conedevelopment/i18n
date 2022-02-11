@@ -20,8 +20,8 @@
         }
     },
     "require": {
-        "php" : "^7.2.5 || ^8.0",
-        "laravel/framework": "^6.0 || ^7.0 || ^8.0"
+        "php": "^7.2.5 || ^8.0",
+        "laravel/framework": "^6.0 || ^7.0 || ^8.0|^9.0"
     },
     "require-dev": {
         "laravel/laravel": "8.x-dev",
@@ -43,6 +43,6 @@
             "dev-master": "1.0-dev"
         }
     },
-    "minimum-stability" : "dev",
-    "prefer-stable" : true
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
