@@ -1,5 +1,13 @@
 # Changelog
 
+# v1.2.0 (2022-02-11)
+### Added
+- Laravel 9 compatibility [#33](https://github.com/conedevelopment/i18n/pull/33)
+
+### Removed
+- All the unnecessary dependencies
+- Laravel 6 and 7 support
+
 ## v1.1.0 (2020-12-29)
 ### Added
 - PHP 8 compatibility
