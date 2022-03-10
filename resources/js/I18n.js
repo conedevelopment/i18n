@@ -33,11 +33,11 @@ export default class I18n
      */
     trans_choice(key, count = 1, replace = {})
     {
-        let translations = this._extract(key, '|').split('|'), translation;
+        let translations = this._extract(key).split('|');
 
-        translations.some(t => translation = this._match(t, count));
+        let translation = translations.find((t) => this._match(t, count));
 
-        if (!translation) {
+        if (translation === undefined) {
             // TODO: support other plural forms
             let pluralIndex = (count == 1) ? 0 : 1;
             translation = (pluralIndex in translations) ? translations[pluralIndex] : translations[0]
@@ -46,7 +46,7 @@ export default class I18n
         translation = translation.replace(/\[.*?\]|\{.*?\}/, '');
 
         replace['count'] = count;
-        
+
         return this._replace(translation, replace);
     }
 
@@ -59,7 +59,7 @@ export default class I18n
      */
     _match(translation, count)
     {
-        let match = translation.match(/^[\{\[]([^\[\]\{\}]*)[\}\]](.*)/);
+        let match = translation.match(/^[\{\[]([^\[\]\{\}]*)[\}\]]/);
 
         if (! match) return;
 
@@ -67,15 +67,15 @@ export default class I18n
             let [from, to] = match[1].split(',', 2);
 
             if (to === '*' && count >= from) {
-                return match[2];
+                return translation;
             } else if (from === '*' && count <= to) {
-                return match[2];
+                return translation;
             } else if (count >= from && count <= to) {
-                return match[2];
+                return translation;
             }
         }
 
-        return match[1] == count ? match[2] : null;
+        return match[1] == count ? translation : null;
     }
 
     /**
