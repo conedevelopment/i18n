@@ -37,10 +37,16 @@ export default class I18n
 
         translations.some(t => translation = this._match(t, count));
 
-        translation = translation || (count > 1 ? translations[1] : translations[0]);
+        if (!translation) {
+            // TODO: support other plural forms
+            let pluralIndex = (count == 1) ? 0 : 1;
+            translation = (pluralIndex in translations) ? translations[pluralIndex] : translations[0]
+        }
 
         translation = translation.replace(/\[.*?\]|\{.*?\}/, '');
 
+        replace['count'] = count;
+        
         return this._replace(translation, replace);
     }
 
