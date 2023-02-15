@@ -2,6 +2,7 @@
 
 namespace Pine\I18n;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\ServiceProvider;
@@ -13,7 +14,7 @@ class I18nServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Publish the assets
         $this->publishes([
@@ -43,11 +44,19 @@ class I18nServiceProvider extends ServiceProvider
      *
      * @return \Illuminate\Support\Collection
      */
-    protected function translations()
+    protected function translations(): Collection
     {
-        $path = is_dir(base_path('lang')) ? base_path('lang') : resource_path('lang');
+        $path = null;
 
-        $translations = collect(File::directories($path))->mapWithKeys(function ($dir) {
+        if (is_dir(base_path('lang'))) {
+            $path = base_path('lang');
+        } elseif (is_dir(resource_path('lang'))) {
+            $path = resource_path('lang');
+        } elseif (is_dir(base_path('vendor/laravel/framework/src/Illuminate/Translation/lang'))) {
+            $path = base_path('vendor/laravel/framework/src/Illuminate/Translation/lang');
+        }
+
+        $translations = is_null($path) ? collect() : collect(File::directories($path))->mapWithKeys(function ($dir) {
             return [
                 basename($dir) => collect($this->getFiles($dir))->flatMap(function ($file) {
                     return [
@@ -59,15 +68,17 @@ class I18nServiceProvider extends ServiceProvider
 
         $packageTranslations = $this->packageTranslations();
 
-        return $translations->keys()->merge(
-            $packageTranslations->keys()
-        )->unique()->values()->mapWithKeys(function ($locale) use ($translations, $packageTranslations) {
-            return [
-                $locale => $translations->has($locale)
-                    ? $translations->get($locale)->merge($packageTranslations->get($locale))
-                    : $packageTranslations->get($locale)->merge($translations->get(config('app.fallback_locale'))),
-            ];
-        });
+        return $translations->keys()
+                            ->merge($packageTranslations->keys())
+                            ->unique()
+                            ->values()
+                            ->mapWithKeys(function ($locale) use ($translations, $packageTranslations) {
+                                return [
+                                    $locale => $translations->has($locale)
+                                        ? $translations->get($locale)->merge($packageTranslations->get($locale))
+                                        : $packageTranslations->get($locale)->merge($translations->get(config('app.fallback_locale'))),
+                                ];
+                            });
     }
 
     /**
