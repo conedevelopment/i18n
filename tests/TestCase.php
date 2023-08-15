@@ -18,6 +18,8 @@ abstract class TestCase extends BaseTestCase
 
         $this->app['translator']->addNamespace('i18n', __DIR__.'/lang');
 
+        Artisan::call('view:clear');
+
         Artisan::call('lang:publish');
 
         View::addNamespace('i18n', __DIR__.'/views');
