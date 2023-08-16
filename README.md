@@ -206,11 +206,6 @@ This way only the current translations are pushed to the window object and not a
 
 > Note: On local environment the cached views are getting cleared to keep translations fresh.
 
-## Limitations
-
-The JSON file translations are not supported! Only the PHP array based key - value translations can be used.
-Also, please pay attention to place and use the tranlations the way Laravel requires it.
-
 ## Contribute
 
 If you found a bug or you have an idea connecting the package, feel free to open an issue.
