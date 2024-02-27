@@ -27,7 +27,8 @@ abstract class TestCase extends BaseTestCase
         Artisan::call('cache:clear');
         Artisan::call('view:clear');
 
-        Artisan::call('lang:publish');
+        // app()->version(); Artisan::call('lang:publish');
+        Artisan::call('vendor:publish --tag=lang');
 
         View::addNamespace('i18n', __DIR__.'/views');
 
