@@ -28,8 +28,8 @@
         "illuminate/filesystem": "^9.0 || ^10.0"
     },
     "require-dev": {
-        "laravel/laravel": "^9.0 || ^10.0",
-        "phpunit/phpunit": "^10.0"
+        "laravel/laravel": "^9.5 || ^10.0",
+        "phpunit/phpunit": "^9.6 || ^10.0"
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
