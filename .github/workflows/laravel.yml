@@ -8,17 +8,21 @@ on:
 
 jobs:
   laravel:
-
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version:
+          - "8.0"
+          - "8.1"
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Install Dependencies
-      run: composer install --no-ansi --no-interaction --no-scripts --prefer-dist
+    - uses: actions/checkout@v4
     - name: Setup PHP, with composer and extensions
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.1'
+        php-version: ${{ matrix.php-version }}
         extensions: mbstring, dom, fileinfo
+    - name: Install Dependencies
+      run: composer update --no-ansi --no-interaction --no-scripts --prefer-dist
     - name: Run Test
       run: vendor/bin/phpunit
