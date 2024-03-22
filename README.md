@@ -115,7 +115,8 @@ Let's say we have the following translation line:
     'attempts' => 'Be careful, you have :attempts attempt left.|You still have :attempts attempts left.',
 ]
 ```
-> Note, the plural and the singular versions are separated with the `|` character!
+> [!NOTE]
+> The plural and the singular versions are separated by the `|` character!
 
 ```js
 translator.trans_choice('auth.attempts', 1, { attempts: 'only one' });
