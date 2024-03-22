@@ -115,7 +115,8 @@ Let's say we have the following translation line:
     'attempts' => 'Be careful, you have :attempts attempt left.|You still have :attempts attempts left.',
 ]
 ```
-> Note, the plural and the singular verions are separated with the `|` character!
+> [!NOTE]
+> The plural and the singular versions are separated by the `|` character!
 
 ```js
 translator.trans_choice('auth.attempts', 1, { attempts: 'only one' });
@@ -191,7 +192,7 @@ Behind the scenes the proper translations will be rendered, if it exists.
 
 ## Fallback locales
 
-If there are no translations is not available in the current langauge,
+If there are no translations is not available in the current language,
 the package will look for the fallback locale's translations.
 If there is no translations available in the fallback locale, the missing translations won't appear.
 

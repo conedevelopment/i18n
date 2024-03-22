@@ -77,7 +77,7 @@
 ## v0.5.1 (2018-05-29)
 ### Added
 - new test for custom translations' object key
-### Chaged
+### Changed
 - JS regex for object extracting
 - trimming quotes from translations' object key
 
