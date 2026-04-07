@@ -1,15 +1,15 @@
 # I18n
 
-Push your Laravel translations to the front-end and use them easily with JavaScript.
+Push your Laravel translations to the front end and use them easily with JavaScript.
 
-A nice tool for SPAs and front-end heavy applications.
+A useful tool for SPAs and front-end-heavy applications.
 
-If you have any question how the package works, we suggest to read this post:
+If you have any questions about how the package works, we suggest reading this post:
 [Using Laravel’s Localization in JS](https://pineco.de/using-laravels-localization-js/).
 
 ## Getting started
 
-You can install the package with composer, running the `composer require conedevelopment/i18n` command.
+Install the package with Composer by running `composer require conedevelopment/i18n`.
 
 ## Translations in view files
 
@@ -34,12 +34,12 @@ You may override the default key for the translations. You can do that by passin
 
 ## Publishing and using the JavaScript library
 
-Use the `php artisan vendor:publish` command and choose the `Pine\I18n\I18nServiceProvider` provider.
-After publishing you can find your fresh copy in the `resources/js/vendor` folder.
+Run `php artisan vendor:publish` and choose the `Pine\I18n\I18nServiceProvider` provider.
+After publishing, you can find the generated file in the `resources/js/vendor` directory.
 
 ### Using the I18n.js
 
-Then you can import the `I18n` class and assign it to the `window` object.
+You can then import the `I18n` class and assign it to the `window` object.
 
 ```js
 import I18n from './vendor/I18n';
@@ -48,28 +48,31 @@ window.I18n = I18n;
 
 ### Initializing a translation instance
 
-From this point you can initialize the translation service anywhere from your application.
+You can initialize the translation service anywhere in your application.
 
 ```js
 let translator = new I18n;
 ```
 
 By default, it uses the `translations` key in the `window` object.
-If you want to use the custom one you set in the blade directive, pass the same key to the constructor.
+If you want to use the custom key you set in the Blade directive, pass the same key to the constructor.
 
 ```js
 let translator = new I18n('myTranslations');
 ```
 
+`trans_choice()` falls back to the first form when the count is `1` and to the second form otherwise,
+unless an explicit selector like `{0}` or `[2,9]` matches first.
+
 ### Using it as a Vue service
 
-If you want to use it from Vue templates directly you can extend Vue with this easily.
+If you want to use it directly in Vue templates, you can extend Vue like this:
 
 ```js
 Vue.prototype.$I18n = new I18n;
 ```
 
-You can call it from your template or the script part of your component like below:
+You can call it from your template or from the script section of your component:
 
 ```html
 <template>
@@ -87,11 +90,11 @@ computed: {
 
 ### Methods
 
-The package comes with two methods on JS side. The `trans()` and the `trans_choice()`.
+The package provides two JavaScript methods: `trans()` and `trans_choice()`.
 
 #### `trans()`
 
-The `trans` method accepts the key of the translation and the attributes what we want to replace, but it's optional.
+The `trans` method accepts the translation key and an optional object of replacement values.
 
 ```js
 translator.trans('auth.failed');
@@ -105,8 +108,8 @@ translator.trans('auth.throttle', { seconds: 60 });
 
 #### `trans_choice()`
 
-The `trans_choice` method determines if the translation should be pluralized or nor by the given cout.
-Also, it accepts the attributes we want to replace.
+The `trans_choice` method selects the correct plural form for the given count.
+It also accepts an object of replacement values.
 
 Let's say we have the following translation line:
 
@@ -128,8 +131,8 @@ translator.trans_choice('auth.attempts', 4, { attempts: 'less than five' });
 // You still have less than five attempts left.
 ```
 
-Like in Laravel, you have the ability to set ranges for the pluralization.
-Also, you can replace placeholders like before.
+As in Laravel, you can define explicit pluralization ranges.
+You can also replace placeholders just like in `trans()`.
 
 ```php
 [
@@ -154,8 +157,8 @@ translator.trans_choice('auth.attempts', 25, { number: 25 });
 
 ### Transforming replacement parameters
 
-Like in Laravel's functionality, you can transform your parameters to upper case, or convert
-only the first character to capital letter. All you need to do, to modify your placeholders.
+Like Laravel, you can transform replacement values to uppercase or capitalize only the first letter.
+You only need to change the placeholder casing.
 
 ```php
 [
@@ -179,7 +182,7 @@ translator.trans('messages.goodbye', { name: 'pine' });
 ### Package translations
 
 Thanks to the idea of [Jonathan](https://github.com/sardoj), package translations are supported by default.
-You can access to the translations as in Laravel, using the predefined namespace.
+You can access package translations the same way you do in Laravel, using the predefined namespace.
 
 ```js
 translator.trans('courier::messages.message');
@@ -187,26 +190,26 @@ translator.trans('courier::messages.message');
 
 ## Multiple locales
 
-Multiple locales are supported. You can change the application's locale anytime.
-Behind the scenes the proper translations will be rendered, if it exists.
+Multiple locales are supported. You can change the application's locale at any time.
+Behind the scenes, the correct translations are rendered when they exist.
 
 ## Fallback locales
 
-If there are no translations is not available in the current language,
-the package will look for the fallback locale's translations.
-If there is no translations available in the fallback locale, the missing translations won't appear.
+If translations are not available in the current locale,
+the package will look for translations in the fallback locale.
+If they are not available there either, the missing translations will not be rendered.
 
 ## Performance
 
-The translations are generated when the views are compiled.
-It means they are cached and stored as strings in the compiled views.
-It's much more performance friendly than generating them on runtime or running and AJAX request to fetch the translations.
+Translations are generated when the views are compiled.
+That means they are cached and stored as strings in the compiled views.
+This is much more efficient than generating them at runtime or making an AJAX request to fetch them.
 
-Behind the scenes there is a switch - case that determines which translations should be present, based on the current locale.
-This way only the current translations are pushed to the window object and not all of them.
+Behind the scenes, a switch statement determines which translations should be present based on the current locale.
+This way, only the current locale's translations are pushed to the `window` object instead of all translations.
 
-> Note: On local environment the cached views are getting cleared to keep translations fresh.
+> Note: In the local environment, cached views are cleared to keep translations fresh.
 
 ## Contribute
 
-If you found a bug or you have an idea connecting the package, feel free to open an issue.
+If you find a bug or have an idea for the package, feel free to open an issue.

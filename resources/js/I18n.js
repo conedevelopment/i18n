@@ -33,43 +33,84 @@ export default class I18n
      */
     trans_choice(key, count = 1, replace = {})
     {
-        let translations = this._extract(key, '|').split('|'), translation;
+        let segments = this._extract(key).toString().split('|');
+        let translation = this._extractChoice(segments, count);
 
-        translations.some(t => translation = this._match(t, count));
-
-        translation = translation || (count > 1 ? translations[1] : translations[0]);
-
-        translation = translation.replace(/\[.*?\]|\{.*?\}/, '');
-
-        return this._replace(translation, replace);
+        return this._replace(translation, { count, ...replace });
     }
 
     /**
-     * Match the translation limit with the count.
+     * Extract a translation string using inline conditions.
+     *
+     * @param  {string[]}  segments
+     * @param  {number}  count
+     * @return {string}
+     */
+    _extractChoice(segments, count)
+    {
+        let translation;
+
+        segments.some(segment => {
+            translation = this._extractFromString(segment, count);
+
+            return translation !== null;
+        });
+
+        if (translation !== null && translation !== undefined) {
+            return translation.trim();
+        }
+
+        segments = this._stripConditions(segments);
+
+        if (segments.length === 1 || count == 1 || segments[1] === undefined) {
+            return segments[0].trim();
+        }
+
+        return segments[1].trim();
+    }
+
+    /**
+     * Get the translation string if the condition matches.
      *
      * @param  {string}  translation
      * @param  {number}  count
      * @return {string|null}
      */
-    _match(translation, count)
+    _extractFromString(translation, count)
     {
-        let match = translation.match(/^[\{\[]([^\[\]\{\}]*)[\}\]](.*)/);
+        let match = translation.match(/^[\{\[]([^\[\]\{\}]*)[\}\]]([\s\S]*)/);
 
-        if (! match) return;
+        if (! match || match.length !== 3) {
+            return null;
+        }
 
-        if (match[1].includes(',')) {
-            let [from, to] = match[1].split(',', 2);
+        let condition = match[1];
+        let value = match[2];
+
+        if (condition.includes(',')) {
+            let [from, to] = condition.split(',', 2);
 
             if (to === '*' && count >= from) {
-                return match[2];
+                return value;
             } else if (from === '*' && count <= to) {
-                return match[2];
+                return value;
             } else if (count >= from && count <= to) {
-                return match[2];
+                return value;
             }
         }
 
-        return match[1] == count ? match[2] : null;
+        return condition == count ? value : null;
+    }
+
+    /**
+     * Strip the inline conditions from each segment, just leaving the text.
+     *
+     * @param  {string[]}  segments
+     * @return {string[]}
+     */
+    _stripConditions(segments)
+    {
+        return segments.map(segment => segment.replace(/^[\{\[]([^\[\]\{\}]*)[\}\]]/, ''));
     }
 
     /**
@@ -95,25 +136,26 @@ export default class I18n
                 );
         }
 
-        return translation.toString().trim()
+        return translation.toString().trim();
     }
 
     /**
      * Extract values from objects by dot notation.
      *
      * @param  {string}  key
-     * @param  {mixed}  value
      * @return {mixed}
      */
-    _extract(key, value = null)
+    _extract(key)
     {
-        let path = key.toString().split('::'),
-            keys = path.pop().toString().split('.');
+        let path = key.toString().split('::');
+        let keys = path.pop().toString().split('.');
 
         if (path.length > 0) {
             path[0] += '::';
         }
 
-        return path.concat(keys).reduce((t, i) => t[i] || (value || key), window[this.key]);
+        return path.concat(keys).reduce((translations, index) => {
+            return translations && translations[index] !== undefined ? translations[index] : key;
+        }, window[this.key]);
     }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+# Unreleased
+### Fixed
+- Make the JavaScript `trans_choice()` implementation match Laravel's selector behavior
+- Fix JavaScript `trans_choice()` handling for literal strings and explicit pluralization selectors
+
 # v1.2.0 (2022-02-11)
 ### Added
 - Laravel 9 compatibility [#33](https://github.com/conedevelopment/i18n/pull/33)
